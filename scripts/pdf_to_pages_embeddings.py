@@ -12,7 +12,7 @@ import argparse, sys
 import numpy as np
 
 from PyPDF2 import PdfReader
-
+import time
 import pandas as pd
 import openai
 import csv
@@ -73,11 +73,13 @@ df.head()
 
 df.to_csv(f'{filename}.pages.csv', index=False)
 
+rate_limit = 60
 def get_embedding(text: str, model: str) -> list[float]:
     result = openai.Embedding.create(
       model=model,
       input=text
     )
+    time.sleep(rate_limit)
     return result["data"][0]["embedding"]
 
 def get_doc_embedding(text: str) -> list[float]:
