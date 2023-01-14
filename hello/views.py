@@ -17,7 +17,7 @@ import os
 
 load_dotenv('.env')
 
-Resemble.api_key(os.environ["RESEMBLE_API_KEY"])
+#Resemble.api_key(os.environ["RESEMBLE_API_KEY"])
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 COMPLETIONS_MODEL = "text-davinci-003"
@@ -171,6 +171,7 @@ def ask(request):
     project_uuid = '6314e4df'
     voice_uuid = '0eb3a3f1'
 
+    """
     response = Resemble.v2.clips.create_sync(
         project_uuid,
         voice_uuid,
@@ -184,6 +185,7 @@ def ask(request):
         is_archived=None,
         raw=None
     )
+    """
 
     question = Question(question=question_asked, answer=answer, context=context, audio_src_url=response['item']['audio_src'])
     question.save()
